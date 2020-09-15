@@ -24,11 +24,15 @@ let mongoOptions = {
   autoIndex: false,
   useUnifiedTopology: true,
 };
+console.log(process.env.MONGO_URI);
 mongoose
   .connect(process.env.MONGO_URI, mongoOptions)
   .then(() => console.log("MongoDB connected Successfully..."))
   .catch((err) => console.log("Error:", err));
 
 app.use(morgan("dev"));
+
+const routes = require("./controllers/route");
+app.use("/api", routes);
 
 app.listen(port, () => console.log(`app listening at port ${port}`));
