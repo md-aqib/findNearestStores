@@ -24,6 +24,7 @@ const register = new Schema({
     enum: ["MAN", "WOMAN", "OTHER"],
     required: true,
   },
+  createdAt: Date.now(),
 });
 
 register.pre("save", function (next) {
