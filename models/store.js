@@ -8,8 +8,14 @@ let store = new Schema({
   city: String,
   storeAddress: String,
   storeLocation: {
-    default: "Point",
-    coordinates: [Number],
+    type: {
+      type: String,
+      enum: ["Point"],
+      default: "Point",
+    },
+    coordinates: {
+      type: [Number],
+    },
   },
 });
 store.index({ "storeLocation.coordinates": "2dsphere" });
